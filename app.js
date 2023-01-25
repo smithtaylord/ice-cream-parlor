@@ -24,7 +24,7 @@ const toppings = [{
     price: 2
 }]
 
-const containers = [{
+const vessels = [{
     name: 'Waffle Cone',
     image: 'https://m.media-amazon.com/images/I/71VNjBMakfL._SL1500_.jpg',
     price: 2
@@ -42,8 +42,10 @@ let cart = []
 function drawToppings() {
     // console.log('drawToppings');
     let toppingElem = document.getElementById('toppings')
+    let template = ''
+
     toppings.forEach(t => {
-        toppingElem.innerHTML += `
+        template += `
     <div class="col-4">
     <div class="card" >
     <img src="${t.image}" alt="" onclick="addToCart()">
@@ -51,18 +53,36 @@ function drawToppings() {
     <p>${t.name}</p>
     <p>$${t.price}</p>
     </div>
+    </div>
     </div>`
 
     })
-
+    toppingElem.innerHTML = template
 }
 
 function drawVessels() {
-    console.log('drawVessels');
+    // console.log('drawVessels');
+    let vesselElem = document.getElementById('vessels')
+    let template = ''
+
+    vessels.forEach(v => {
+        template += `
+        <div class="col-4">
+        <div class="card" >
+        <img src="${v.image}" alt="" onclick="addToCart()">
+        <div class="d-flex justify-content-around">
+        <p>${v.name}</p>
+        <p>$${v.price}</p>
+        </div>
+        </div>
+        </div>`
+    })
+
+    vesselElem.innerHTML = template
 }
 
 function drawIceCream() {
-    console.log('drawIceCream');
+    // console.log('drawIceCream');
 }
 
 function drawCart() {
