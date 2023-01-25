@@ -34,11 +34,7 @@ const vessels = [{
     price: 4
 }]
 
-let cart = [{
-    name: 'strawberry',
-    price: 4,
-    qty: 2
-}]
+let cart = []
 
 
 // Functions
@@ -52,7 +48,7 @@ function drawToppings() {
         template += `
     <div class="col-4">
     <div class="card" >
-    <img src="${t.image}" alt="" onclick="addToCart('${t.name}')">
+    <img src="${t.image}" alt="" onclick="addToCart('${t.name}',toppings)">
     <div class="d-flex justify-content-around">
     <p>${t.name}</p>
     <p>$${t.price}</p>
@@ -73,7 +69,7 @@ function drawVessels() {
         template += `
         <div class="col-4">
         <div class="card" >
-        <img src="${v.image}" alt="" onclick="addToCart('${v.name}')">
+        <img src="${v.image}" alt="" onclick="addToCart('${v.name}',vessels)">
         <div class="d-flex justify-content-around">
         <p>${v.name}</p>
         <p>$${v.price}</p>
@@ -95,7 +91,7 @@ function drawIceCream() {
             `
         <div class="col-4">
         <div class="card" >
-        <img src="${i.image}" alt="" onclick="addToCart('${i.name}')">
+        <img src="${i.image}" alt="" onclick="addToCart('${i.name}',iceCreams)">
         <div class="d-flex justify-content-around">
         <p>${i.name}</p>
         <p>$${i.price}</p>
@@ -126,13 +122,27 @@ function drawCart() {
         <div class="col-2">
            $${(c.price * c.qty)}
         </div>
+        </div>
     `
     })
     cartElem.innerHTML = template
 }
 
-function addToCart(name) {
-    console.log('addToCart', name);
+function addToCart(name, array) {
+    // console.log('addToCart', name);
+    let itemToAdd = array.find(p => p.name == name)
+    let alreadyInCart = cart.find(p => p.name == name)
+
+    if (alreadyInCart) {
+        alreadyInCart.qty++
+    } else {
+        cart.push({
+            name: itemToAdd.name,
+            price: itemToAdd.price,
+            qty: 1
+        })
+    }
+    drawCart()
 }
 
 function calculateTotal() {
