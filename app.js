@@ -34,11 +34,27 @@ const containers = [{
     price: 4
 }]
 
+let cart = []
+
 
 // Functions
 
 function drawToppings() {
-    console.log('drawToppings');
+    // console.log('drawToppings');
+    let toppingElem = document.getElementById('toppings')
+    toppings.forEach(t => {
+        toppingElem.innerHTML += `
+    <div class="col-4">
+    <div class="card" >
+    <img src="${t.image}" alt="" onclick="addToCart()">
+    <div class="d-flex justify-content-around">
+    <p>${t.name}</p>
+    <p>$${t.price}</p>
+    </div>
+    </div>`
+
+    })
+
 }
 
 function drawVessels() {
@@ -68,3 +84,9 @@ function pay() {
 function removeCartItem() {
     console.log('removeCartItem');
 }
+
+
+drawToppings()
+drawVessels()
+drawIceCream()
+drawCart()
