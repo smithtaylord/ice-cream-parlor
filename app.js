@@ -1,6 +1,6 @@
 // variables
 
-const iceCream = [{
+const iceCreams = [{
     name: 'Cookie Dough',
     image: 'https://celebratingsweets.com/wp-content/uploads/2014/04/Cookie-Dough-Ice-Cream-1-5.jpg',
     price: 1
@@ -34,7 +34,11 @@ const vessels = [{
     price: 4
 }]
 
-let cart = []
+let cart = [{
+    name: 'strawberry',
+    price: 4,
+    qty: 2
+}]
 
 
 // Functions
@@ -48,7 +52,7 @@ function drawToppings() {
         template += `
     <div class="col-4">
     <div class="card" >
-    <img src="${t.image}" alt="" onclick="addToCart()">
+    <img src="${t.image}" alt="" onclick="addToCart('${t.name}')">
     <div class="d-flex justify-content-around">
     <p>${t.name}</p>
     <p>$${t.price}</p>
@@ -69,7 +73,7 @@ function drawVessels() {
         template += `
         <div class="col-4">
         <div class="card" >
-        <img src="${v.image}" alt="" onclick="addToCart()">
+        <img src="${v.image}" alt="" onclick="addToCart('${v.name}')">
         <div class="d-flex justify-content-around">
         <p>${v.name}</p>
         <p>$${v.price}</p>
@@ -83,14 +87,52 @@ function drawVessels() {
 
 function drawIceCream() {
     // console.log('drawIceCream');
+    let iceCreamElem = document.getElementById('iceCreams')
+    let template = ''
+
+    iceCreams.forEach(i => {
+        template +=
+            `
+        <div class="col-4">
+        <div class="card" >
+        <img src="${i.image}" alt="" onclick="addToCart('${i.name}')">
+        <div class="d-flex justify-content-around">
+        <p>${i.name}</p>
+        <p>$${i.price}</p>
+        </div>
+        </div>
+        </div>`
+    })
+    iceCreamElem.innerHTML = template
 }
 
 function drawCart() {
-    console.log('drawCart');
+    // console.log('drawCart');
+    let cartElem = document.getElementById('cart')
+    let template = ''
+
+    cart.forEach(c => {
+        template += `
+        <div class="row">
+        <div class="col-6">
+            <p>${c.name}</p>
+        </div>
+        <div class="col-2">
+            <p>${c.qty}</p>
+        </div>
+        <div class="col-2">
+            $${c.price}
+        </div>
+        <div class="col-2">
+           $${(c.price * c.qty)}
+        </div>
+    `
+    })
+    cartElem.innerHTML = template
 }
 
-function addToCart() {
-    console.log('addToCart');
+function addToCart(name) {
+    console.log('addToCart', name);
 }
 
 function calculateTotal() {
