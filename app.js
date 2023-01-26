@@ -48,7 +48,7 @@ function drawToppings() {
         template += `
     <div class="col-4">
     <div class="card" >
-    <img src="${t.image}" alt="" onclick="addToCart('${t.name}',toppings)">
+    <img src="${t.image}" alt="" class"" onclick="addToCart('${t.name}',toppings)">
     <div class="d-flex justify-content-around">
     <p>${t.name}</p>
     <p>$${t.price}</p>
@@ -105,6 +105,7 @@ function drawIceCream() {
 function drawCart() {
     // console.log('drawCart');
     let cartElem = document.getElementById('cart')
+    let cartTotalElem = document.getElementById('total')
     let template = ''
 
     cart.forEach(c => {
@@ -126,6 +127,11 @@ function drawCart() {
     `
     })
     cartElem.innerHTML = template
+    let total = calculateTotal()
+
+    cartTotalElem.innerText = total
+
+
 }
 
 function addToCart(name, array) {
@@ -147,10 +153,18 @@ function addToCart(name, array) {
 
 function calculateTotal() {
     console.log('calculateTotal');
+    let total = 0
+
+    cart.forEach(p => {
+        total += p.price * p.qty
+    })
+
+    return total
 }
 
 function pay() {
-    console.log('pay');
+    cart = []
+    drawCart()
 }
 
 function removeCartItem() {

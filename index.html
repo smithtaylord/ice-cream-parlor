@@ -17,12 +17,29 @@
     <link rel="stylesheet" href="style.css">
     <title>Ice Cream Parlor</title>
 </head>
+<style>
+    body.debug .container,
+    body.debug .container-fluid {
+        outline: 2px double blue;
+        outline-offset: -2px;
+    }
 
-<body>
-    <header>
-        <div class="container-fluid">
+    body.debug .row {
+        outline: 2px dashed red;
+        outline-offset: -2px;
+    }
+
+    body.debug [class*="col-"] {
+        outline: 2px dotted forestgreen;
+        outline-offset: -3px;
+    }
+</style>
+
+<body class="">
+    <header class="sticky-top">
+        <div class="container-fluid ">
             <div class="row">
-                <div class="col-12 text-center">
+                <div class="col-12 text-center ">
                     <h1 class="mdi mdi-ice-cream">ICE CREAM PARLOR</h1>
                 </div>
             </div>
@@ -32,25 +49,30 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-4 cart border">
-                    <h2 class="text-center">CART</h2>
-                    <div class="row">
-                        <div class="col-6">
-                            <h5>NAME</h5>
+                <div class="col-4 cart border ">
+                    <div class="position-">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="text-center">CART</h2>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <h5>QTY</h5>
+                        <div class="row">
+                            <div class="col-6">
+                                <h5>NAME</h5>
+                            </div>
+                            <div class="col-2">
+                                <h5>QTY</h5>
+                            </div>
+                            <div class="col-2">
+                                <h5>EACH</h5>
+                            </div>
+                            <div class="col-2">
+                                <h5>TOTAL</h5>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <h5>EACH</h5>
-                        </div>
-                        <div class="col-2">
-                            <h5>TOTAL</h5>
-                        </div>
-                    </div>
-                    <!-- SECTION CART TEMPLATE -->
-                    <div id="cart">
-                        <!-- <div class="row">
+                        <!-- SECTION CART TEMPLATE -->
+                        <div id="cart">
+                            <!-- <div class="row">
                             <div class="col-6">
                                 <p>Strawberry</p>
                             </div>
@@ -64,6 +86,17 @@
                                 $8
                             </div>
                         </div> -->
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-end">
+                                <h4>Grand Total $<span id="total"></span></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-end">
+                                <button class="btn btn-success" onclick="pay()">PAY NOW</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-8 products border">
